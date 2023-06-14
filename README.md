@@ -68,6 +68,10 @@ Explanation: The Terraform script ‘main.tf’ will be the main Terraform scrip
 2.Copy the public-ip address from the Terraform script that ran in the previous step.  
 3. Go to the location of the ‘MCAnsible’ folder  
 4. Open the inventory.ini file and paste the ip address in there, the format should look like:
+```
+[mcservers]
+ec2-x-x-x-x.us-west-2.compute.amazonaws.com ansible_user=ec2-user ansible_ssh_private_key_file=/yourpath/mykeyfile.pem
+```
 5. In the inventory.ini file change the keyname from mykeyfile to the name of your keyfile pair that AWS will accept and use.  
 Explanation: This step is to set up and configure the Ansible script to match your credentials and your keyfile pair.  
 
