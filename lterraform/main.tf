@@ -11,7 +11,7 @@ terraform {
 
 provider "aws" {
   region                   = "us-west-2"
-  shared_credentials_files = ["/Users/fnaf6/Downloads/lterraform/.aws/credentials"]
+  shared_credentials_files = ["/yourpath/lterraform/.aws/credentials"]
 }
 
 resource "aws_instance" "app_server" {
