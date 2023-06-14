@@ -112,7 +112,7 @@ server port (default is 25565).
 
 what we set in the security settings.
 ```
-telnet \[public ip of ec2 instance] \[25565]  
+telnet [public ip of ec2 instance] [25565]  
 ```
 Or Use
 ```
