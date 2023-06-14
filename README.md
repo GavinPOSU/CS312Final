@@ -31,6 +31,7 @@ The user needs to have the following installed/access to. 
 4. Place the contents of the ‘MCAnsible’ folder into the place that has access to Ansible Commands.  
 5. Download any necessary requirements as listed in the “Requirements” section.  
 Explanation: This step has you setup your environment with the requirements needed to run the scripts and place the folders in places that you want them to be and can also run them.
+
 **2. Change the credentials located in the './aws’ folder located in the ‘lterraform’ folder to your AWS credentials.**
 1. Go to the “./aws” folder and open the credentials file.  
 2. Go to your AWS account and copy your AWS account credentials. Should look like the format below:  
@@ -48,6 +49,7 @@ aws_session_token=
 5. Go into the ‘main.tf’ and change the keyname from mykeyfile to the name of your keyfile pair that AWS will accept and use.  
 6. In the same ‘main.tf’ change the location of the credentials to path your “/.aws/credentials” file is located in.  
 Explanation: You have your own set of AWS credentials that you need to use in order to set up the your new EC2 instance using Terraform.
+
 **3. Initialize Terraform and run the Terraform Script. The commands listed below.**
 1. Open a command prompt/terminal  
 2. Change directories to the location of the ‘lterraform’ folder  
