@@ -1,0 +1,26 @@
+[Unit]
+Description=Minecraft Server
+Wants=network-online.target
+After=network-online.target
+[Service]
+# Ensure to set the correct user and working directory (installation directory of your server) here
+User=root
+WorkingDirectory = /home/ec2-user/minecraftserver
+# You can customize the maximum amount of memory as well as the JVM flags her
+ExecStart=/usr/bin/java -Xmx1024M -Xms1024M -jar /home/ec2-user/minecraftServer/server.jar nogui
+# Restart the server when it is stopped or crashed after 30 seconds
+# Comment out RestartSec if you want to restart immediately
+# Send "stop" to the Minecraft server console
+ExecStop=/usr/bin/screen -p 0 -S minecraft -X eval 'stuff \"stop\"\015'
+# Wait for the PID to die - otherwise it's killed after this command finishes!
+ExecStop=/bin/bash -c "while ps -p $MAINPID > /dev/null; do /bin/sleep 1; done"
+# Note that absolute paths for all executables are required! 
+Restart=always
+RestartSec=30
+RemainAfterExit=True
+# Alternative: Restart the server only when it stops regularly
+# Restart=on-success
+# Do not remove this!
+StandardInput=null
+[Install]
+WantedBy=multi-user.target

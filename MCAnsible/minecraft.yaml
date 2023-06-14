@@ -1,0 +1,64 @@
+# minecraft-server.yml
+---
+
+- name: Minecraft 1.12.1 server
+  hosts: mcservers
+  user: ec2-user
+  vars:
+    packages: ['vim', 'wget', 'java-1.8.0-openjdk-devel.x86_64', 'screen']  
+    mcs_dir: /home/ec2-user/minecraftserver
+    mcs_jar: server.jar
+    session_name: mcserver
+  become: true
+
+  tasks:
+    - name: Update yum
+      ansible.builtin.package: 
+        name='*' 
+        state=latest
+
+    - name: Get packages
+      ansible.builtin.yum: 
+        name={{ item }} 
+        state=latest
+      with_items: "{{ packages }}"
+
+    - name: Create minecraftserver dir
+      file: state=directory path=/home/ec2-user/minecraftserver
+
+    - name: Wget mcserver jar
+      get_url:
+        url: https://launcher.mojang.com/v1/objects/a412fd69db1f81db3f511c1463fd304675244077/server.jar
+        dest: /home/ec2-user/minecraftserver/server.jar
+# minecraft-server.yml
+    - name: Agree to EULA
+      template: src=eula.tpl dest='{{ mcs_dir }}/eula.txt'
+    - name: Copy from Local to Remote Target Machine with 'copy'
+      copy:
+        src: minecraft.service
+        dest: /etc/systemd/system/minecraft.service
+        backup: yes
+
+    - name: enable minecraft with systemd
+      systemd:
+        name: minecraft
+        enabled: true
+        masked: no
+
+    - name: Start a service with systemd
+      systemd:
+        name: minecraft
+        state: started
+
+# minecraft-server.yml
+    - name: Check screen for running sessions
+      shell: screen -ls
+      register: sessions
+      failed_when: sessions.rc == 0 or sessions.rc >= 2
+
+    - name: Run mcserver
+      command: screen -s {{ session_name }} -d -m java -Xmx1024M -Xms1024M -jar {{ mcs_dir }}/{{ mcs_jar }} nogui
+      args:
+        chdir: '{{ mcs_dir }}'
+      when: sessions.stdout.find(session_name) == -1
+
