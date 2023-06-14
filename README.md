@@ -24,7 +24,7 @@ The user needs to have the following installed/access to. 
 
 **List of Commands to Run**
 
-**1. Install the two folders from the github repo in appropriate places that can run Terraform and Ansible respectively. **
+**1. Install the two folders from the github repo in appropriate places that can run Terraform and Ansible respectively.**
 1. Go to this github repo and download the zip file.  
 2. Extract the zip file.  
 3. Place the contents of the ‘lterraform’ folder into the place that has access to Terraform and AWS CLI commands.  
