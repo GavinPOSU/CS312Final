@@ -78,7 +78,9 @@ Explanation: This step is to set up and configure the Ansible script to match yo
 ```
 ansible-playbook -i inventory.ini minecraft.yaml  
 ```
-Explanation: This step runs the ansible playbook for the server specifically. It will go through multiple steps of connecting to the ec2 instance, installing and updating packages such as java and screen, it will create a directory on the ec2, download the server.jar, edit the eula.txt file on the instance, then will create a systemd file for minecraft to allow for automatic restarts and proper shutdown of the server, then it will enable and run that systemd file, and it will also use screen to check for running sessions and run the server if need be.**6. Connect to the Minecraft Server.** 
+Explanation: This step runs the ansible playbook for the server specifically. It will go through multiple steps of connecting to the ec2 instance, installing and updating packages such as java and screen, it will create a directory on the ec2, download the server.jar, edit the eula.txt file on the instance, then will create a systemd file for minecraft to allow for automatic restarts and proper shutdown of the server, then it will enable and run that systemd file, and it will also use screen to check for running sessions and run the server if need be.
+
+**6. Connect to the Minecraft Server.** 
 
 1\. Open the Minecraft Java Edition client on your local machine.
 
@@ -116,9 +118,9 @@ Explanation: Steps to actual use and play on the Minecraft server you made throu
 
 **Sources Used**
 
- ****<https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build>   
+<https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build>   
 <https://jhooq.com/terraform-ssh-into-aws-ec2/>   
 <https://medium.com/@alexlnguyen/deploying-a-minecraft-1-12-1-server-with-ansible-a1bc03c948b3>   
 <https://unix.stackexchange.com/questions/302733/minecraft-server-startup-shutdown-with-systemd>   
 <https://www.youtube.com/watch?v=73pgFXLYrfk> 
-****
+
