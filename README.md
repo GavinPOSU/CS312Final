@@ -4,17 +4,18 @@ Deploying a Minecraft Server on AWS with terraform and ansible
 
 **Background**
 
- ****To run the ansible and terraform scripts, they first must be downloaded from this github repo and some of the files(mentioned later) will need to be adjusted. The folder marked “MCAnsible” should go in the directory you have ansible available in and want to run in. The folder marked “lterraform” should go in the directory that has terraform and aws cli available in and want to run in. Once changes are made and the files installed you can run some commands to create the ec2 instance on AWS and to have files and minecraft server download on that ec2 instance, these commands will be mentioned later.  
+ To run the ansible and terraform scripts, they first must be downloaded from this github repo and some of the files(mentioned later) will need to be adjusted. The folder marked “MCAnsible” should go in the directory you have ansible available in and want to run in. The folder marked “lterraform” should go in the directory that has terraform and aws cli available in and want to run in. Once changes are made and the files installed you can run some commands to create the ec2 instance on AWS and to have files and minecraft server download on that ec2 instance, these commands will be mentioned later.  
 **Requirements**
 
-****The user needs to have the following installed/access to. 
+The user needs to have the following installed/access to. 
 
 - The Terraform CLI (1.2.0+) installed.
 - The AWS CLI installed.
 - AWS account and associated credentials that allow you to create resources.
 - Ansible installed either on the same machine or Ubuntu VM
 
-**Major Steps(Broad Overview)**1. Install the two folders in the github repo in appropriate places that can run Terraform and Ansible respectively.   
+**Major Steps(Broad Overview)**
+1. Install the two folders in the github repo in appropriate places that can run Terraform and Ansible respectively.   
 2. Change the credentials located in the ‘./aws’ folder located in the ‘lterraform’ folder to your AWS credentials.  
 3. Initialize Terraform and run the Terraform Script  
 4. Get the public-ip address outputted by the Terraform script and add that into the Inventory.ini file located in the MCAnsible folder.  
@@ -29,13 +30,15 @@ Deploying a Minecraft Server on AWS with terraform and ansible
 5. Download any necessary requirements as listed in the “Requirements” section.  
 Explanation: This step has you setup your environment with the requirements needed to run the scripts and place the folders in places that you want them to be and can also run them.**2. Change the credentials located in the './aws’ folder located in the ‘lterraform’ folder to your AWS credentials.**1. Go to the “./aws” folder and open the credentials file.  
 2. Go to your AWS account and copy your AWS account credentials. Should look like the format below:  
-\[default]
+'''
+[default]
 
 aws_access_key_id=
 
 aws_secret_access_key=
 
-aws_session_token=  
+aws_session_token=
+'''  
 3. Paste the AWS credentials in the credentials file and save.  
 4. In the ‘lterraform’ folder the mykeyfile.pem replace it with a valid keyfile that your AWS account will accept.  
 5. Go into the ‘main.tf’ and change the keyname from mykeyfile to the name of your keyfile pair that AWS will accept and use.  
@@ -43,9 +46,13 @@ aws_session_token=
 Explanation: You have your own set of AWS credentials that you need to use in order to set up the your new EC2 instance using Terraform.**3. Initialize Terraform and run the Terraform Script. The commands listed below.**1. Open a command prompt/terminal  
 2. Change directories to the location of the ‘lterraform’ folder  
 3. Run the command below to initialize Terraform:  
+'''
 Terraform init  
+'''
 4. Run the command below to run the Terraform to create the EC2 instance. The command will set up an EC2 instance  
+'''
 Terraform apply  
+'''
 Explanation: The Terraform script ‘main.tf’ will be the main Terraform script being run. It will create an EC2 Linux instance with the necessary settings such as security groups, key pairs, etc. This instance will appear on your AWS account.**4. Get the public-ip address outputted by the Terraform script and add that into the Inventory.ini file located in the Ansible folder.**1.In the ‘MCAnsible’ folder the mykeyfile.pem replace it with a valid keyfile that your AWS account will accept.
 
 2.Copy the public-ip address from the Terraform script that ran in the previous step.  
