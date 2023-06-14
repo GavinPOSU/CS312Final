@@ -64,7 +64,7 @@ Terraform apply
 Explanation: The Terraform script ‘main.tf’ will be the main Terraform script being run. It will create an EC2 Linux instance with the necessary settings such as security groups, key pairs, etc. This instance will appear on your AWS account.
 
 **4. Get the public-ip address outputted by the Terraform script and add that into the Inventory.ini file located in the Ansible folder.**
-1.In the ‘MCAnsible’ folder the mykeyfile.pem replace it with a valid keyfile that your AWS account will accept.
+1. In the ‘MCAnsible’ folder the mykeyfile.pem replace it with a valid keyfile that your AWS account will accept.
 2.Copy the public-ip address from the Terraform script that ran in the previous step.  
 3. Go to the location of the ‘MCAnsible’ folder  
 4. Open the inventory.ini file and paste the ip address in there, the format should look like:
